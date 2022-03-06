@@ -28,7 +28,7 @@ namespace SeleniumTest
             Toolbar toolbarPage = new Toolbar(driver);
 
             //Act
-            toolbarPage.NavigateToFormsPage();
+            toolbarPage.NavigateToPage("forms");
             formsPage.SetName(Name);
             formsPage.SetEmail(Email);
             formsPage.SetState(State);

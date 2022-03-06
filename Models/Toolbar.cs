@@ -13,18 +13,20 @@ namespace SeleniumTest
             this.driver = driver;
         }
 
-        public IWebElement Forms { get => driver.FindElement(By.ClassName("v-toolbar__items")).FindElement(By.CssSelector("[aria-label=\"forms\"]")); }
-        public IWebElement Planets { get => driver.FindElement(By.ClassName("v-toolbar__items")).FindElement(By.CssSelector("[aria-label=\"planets\"]")); }
+        public IWebElement ToolBar => driver.FindElement(By.ClassName("v-toolbar__items"));
 
-        internal void NavigateToFormsPage()
+        internal void NavigateToPage(string PageName)
         {
-            _ = new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => Forms.Displayed);
-            Forms.Click();
-
-        }internal void NavigateToPlanetsPage()
-        {
-            _ = new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => Planets.Displayed);
-            Planets.Click();
+            try
+            {
+                IWebElement Page = ToolBar.FindElement(By.CssSelector($"[aria-label=\"{PageName}\"]"));
+                _ = new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => Page.Displayed);
+                Page.Click();
+            }
+            catch(NoSuchElementException) 
+            {
+                throw new NotFoundException($"Page {PageName} not found");
+            }
         }
     }
 }

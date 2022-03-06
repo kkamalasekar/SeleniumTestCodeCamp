@@ -25,13 +25,32 @@ namespace SeleniumTest
             string PlanetName = "Earth";
 
             //Act
-            toolbarPage.NavigateToPlanetsPage();
+            //toolbarPage.NavigateToPlanetsPage();
+            toolbarPage.NavigateToPage("planets");
             Planet Earth = planetsPage.GetPlanet(p => p.PlanetName == PlanetName);
             planetsPage.ClickExploreButton(Earth);
 
             //Assert
             Assert.AreEqual(expected: $"Exploring {PlanetName}",
                             actual: planetsPage.GetPopupMessage());
+        }
+        [TestMethod]
+        public void VerifyPlanetsDistance()
+        {
+            //Arrange
+            PlanetsPage planetsPage = new PlanetsPage(driver);
+            Toolbar toolbarPage = new Toolbar(driver);
+            long PlanetDistance = 149600000;
+
+            //Act
+            //toolbarPage.NavigateToPlanetsPage();
+            toolbarPage.NavigateToPage("planets");
+            Planet Earth = planetsPage.GetPlanet(p => p.Distance == PlanetDistance);
+            planetsPage.ClickExploreButton(Earth);
+
+            //Assert
+            Assert.AreEqual(expected: "Earth",
+                            actual: Earth.PlanetName);
         }
 
         [TestInitialize]
