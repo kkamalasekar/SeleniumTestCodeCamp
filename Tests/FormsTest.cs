@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTest
@@ -13,7 +15,7 @@ namespace SeleniumTest
     [TestClass]
     public class FormsTest
     {
-        ChromeDriver driver;
+        IWebDriver driver;
         WebDriverWait wait;
 
         [TestMethod]
@@ -42,7 +44,9 @@ namespace SeleniumTest
         [TestInitialize]
         public void SetUp()
         {
-            driver = new ChromeDriver();
+            //driver = new ChromeDriver();
+            DriverOptions Options = new ChromeOptions();
+            driver = new RemoteWebDriver(remoteAddress: new Uri("http://localhost:4444/wd/hub"), Options);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://d18u5zoaatmpxx.cloudfront.net/#/");
