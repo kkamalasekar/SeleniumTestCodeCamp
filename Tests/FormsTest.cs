@@ -17,7 +17,7 @@ namespace SeleniumTest
     {
         IWebDriver driver;
         WebDriverWait wait;
-
+        [Ignore]
         [TestMethod]
         public void VerifyFeedBackMessage()
         {

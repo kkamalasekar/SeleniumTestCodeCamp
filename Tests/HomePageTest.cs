@@ -14,6 +14,7 @@ namespace SeleniumTest
     {
         IWebDriver driver;
         WebDriverWait wait;
+        [Ignore]
         [TestMethod]
         public void VerifyHeaderText()
         {
@@ -39,7 +40,7 @@ namespace SeleniumTest
 
         }
 
-
+        [Ignore]
         [TestMethod]
         public void VerifyWelcomeText()
         {
