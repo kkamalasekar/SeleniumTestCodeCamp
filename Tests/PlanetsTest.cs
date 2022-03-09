@@ -17,7 +17,6 @@ namespace SeleniumTest
     {
         IWebDriver driver;
         WebDriverWait wait;
-        [Ignore]
         [TestMethod]
         public void VerifyPlanetsFeedBackMessage()
         {
@@ -36,7 +35,6 @@ namespace SeleniumTest
             Assert.AreEqual(expected: $"Exploring {PlanetName}",
                             actual: planetsPage.GetPopupMessage());
         }
-        [Ignore]
         [TestMethod]
         public void VerifyPlanetsDistance()
         {
