@@ -58,7 +58,7 @@ namespace SeleniumTest
         public void SetUp()
         {
             DriverOptions Options = new ChromeOptions();
-            driver = new RemoteWebDriver(remoteAddress: new Uri("http://192.168.1.13:4444/wd/hub"), Options);
+            driver = new RemoteWebDriver(remoteAddress: new Uri("http://selenium-hub:4444/wd/hub"), Options);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://d18u5zoaatmpxx.cloudfront.net/#/");
